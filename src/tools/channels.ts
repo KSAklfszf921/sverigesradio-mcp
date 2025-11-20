@@ -81,6 +81,7 @@ export const channelTools = [
   {
     name: 'list_channels',
     description: 'Lista alla radiokanaler från Sveriges Radio (P1, P2, P3, P4, lokala kanaler). Inkluderar live stream-länkar och kanalinformation.',
+    schema: ListChannelsSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -117,6 +118,7 @@ export const channelTools = [
   {
     name: 'get_channel_rightnow',
     description: 'Visa vad som sänds JUST NU på Sveriges Radio. Kan visa en specifik kanal eller alla kanaler samtidigt med föregående, nuvarande och nästa program.',
+    schema: GetChannelRightNowSchema,
     inputSchema: {
       type: 'object',
       properties: {

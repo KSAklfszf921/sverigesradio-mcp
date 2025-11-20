@@ -64,6 +64,7 @@ export const trafficTools = [
   {
     name: 'get_traffic_messages',
     description: 'Hämta trafikmeddelanden (olyckor, köer, störningar) från Sveriges Radio. Kan filtrera på område och datum. Priority: 1=Mycket allvarlig, 5=Mindre störning.',
+    schema: GetTrafficMessagesSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -88,6 +89,7 @@ export const trafficTools = [
   {
     name: 'get_traffic_areas',
     description: 'Hämta trafikområden. Kan användas med GPS-koordinater för att hitta vilket område en position tillhör, eller utan parametrar för att lista alla områden.',
+    schema: GetTrafficAreasSchema,
     inputSchema: {
       type: 'object',
       properties: {

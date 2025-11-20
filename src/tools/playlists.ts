@@ -73,6 +73,7 @@ export const playlistTools = [
   {
     name: 'get_playlist_rightnow',
     description: 'Visa vilken låt som spelas JUST NU på en kanal. Perfekt för att se vad som är på radion i realtid! Inkluderar artist, titel, album och skivbolag.',
+    schema: GetPlaylistRightNowSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -88,6 +89,7 @@ export const playlistTools = [
   {
     name: 'get_episode_playlist',
     description: 'Hämta komplett spellista för ett avsnitt - alla låtar som spelades i avsnittet med tidsstämplar.',
+    schema: GetEpisodePlaylistSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -103,6 +105,7 @@ export const playlistTools = [
   {
     name: 'search_playlists',
     description: 'Sök i spellistor efter låtar, artister eller album från Sveriges Radio.',
+    schema: SearchPlaylistsSchema,
     inputSchema: {
       type: 'object',
       properties: {

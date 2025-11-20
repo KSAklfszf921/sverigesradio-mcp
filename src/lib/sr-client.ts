@@ -16,6 +16,11 @@ interface RequestParams {
   [key: string]: string | number | boolean | undefined;
 }
 
+const DEFAULT_TIMEOUT_MS = Number(process.env.SR_API_TIMEOUT_MS || 8000);
+const MAX_RETRIES = 2;
+const RETRY_STATUSES = new Set([429, 500, 502, 503, 504]);
+const MAX_CACHE_ENTRIES = 300;
+
 export class SRClient {
   private cache: Map<string, CacheEntry> = new Map();
 
@@ -75,6 +80,9 @@ export class SRClient {
     const cacheKey = this.getCacheKey(url);
     const cached = this.cache.get(cacheKey);
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT_MS);
+
     try {
       const headers: Record<string, string> = {
         'Accept': 'application/json',
@@ -86,21 +94,21 @@ export class SRClient {
         headers['If-None-Match'] = cached.etag;
       }
 
-      const response = await fetch(url, { headers });
+      const response = await this.fetchWithRetries(url, headers, controller.signal);
 
       // 304 Not Modified - return cached data
       if (response.status === 304 && cached) {
-        // Refresh expiry
         cached.expiresAt = this.calculateExpiry(response.headers);
         return cached.data;
       }
 
-      // Handle errors
       if (!response.ok) {
+        const body = await response.text();
         handleAPIError({
           response: {
             status: response.status,
-            data: await response.text(),
+            data: body,
+            headers: Object.fromEntries(response.headers.entries()),
           },
           config: { url },
         });
@@ -108,8 +116,7 @@ export class SRClient {
 
       const data = (await response.json()) as T;
 
-      // Update cache
-      this.cache.set(cacheKey, {
+      this.setCache(cacheKey, {
         data,
         etag: response.headers.get('etag'),
         expiresAt: this.calculateExpiry(response.headers),
@@ -124,6 +131,8 @@ export class SRClient {
       }
 
       handleAPIError(error);
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
@@ -167,6 +176,48 @@ export class SRClient {
       valid,
       expired,
     };
+  }
+
+  private async fetchWithRetries(url: string, headers: Record<string, string>, signal: AbortSignal) {
+    let attempt = 0;
+    let lastError: any | undefined;
+
+    while (attempt <= MAX_RETRIES) {
+      try {
+        const response = await fetch(url, { headers, signal });
+
+        if (RETRY_STATUSES.has(response.status) && attempt < MAX_RETRIES) {
+          await this.delay((attempt + 1) * 200);
+          attempt++;
+          continue;
+        }
+
+        return response;
+      } catch (error: any) {
+        lastError = error;
+        if (error?.name === 'AbortError' || attempt === MAX_RETRIES) {
+          throw lastError;
+        }
+        await this.delay((attempt + 1) * 200);
+        attempt++;
+      }
+    }
+
+    throw lastError;
+  }
+
+  private setCache(key: string, entry: CacheEntry) {
+    this.cache.set(key, entry);
+    if (this.cache.size > MAX_CACHE_ENTRIES) {
+      const firstKey = this.cache.keys().next().value;
+      if (firstKey) {
+        this.cache.delete(firstKey);
+      }
+    }
+  }
+
+  private delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
 

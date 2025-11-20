@@ -90,6 +90,7 @@ export const programTools = [
   {
     name: 'search_programs',
     description: 'Sök efter radioprogram i Sveriges Radio (t.ex. Ekot, P3 Dokumentär, Sommar i P1). Kan filtrera på kategori, kanal, om det finns som podd, med mera.',
+    schema: SearchProgramsSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -132,6 +133,7 @@ export const programTools = [
   {
     name: 'get_program',
     description: 'Hämta detaljerad information om ett specifikt radioprogram inklusive beskrivning, kanal, kontaktinfo och poddgrupper.',
+    schema: GetProgramSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -156,6 +158,7 @@ export const programTools = [
   {
     name: 'get_program_schedule',
     description: 'Hämta tablå/schema för ett specifikt program - när det sänds och på vilka kanaler.',
+    schema: GetProgramScheduleSchema,
     inputSchema: {
       type: 'object',
       properties: {

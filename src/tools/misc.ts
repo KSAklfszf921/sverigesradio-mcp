@@ -161,6 +161,7 @@ export const miscTools = [
   {
     name: 'get_recently_published',
     description: 'Hämta senast publicerade sändningar och poddar från Sveriges Radio. Perfekt för att se vad som är nytt!',
+    schema: GetRecentlyPublishedSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -181,6 +182,7 @@ export const miscTools = [
   {
     name: 'get_top_stories',
     description: 'Hämta toppuffar (featured content) från Sveriges Radio. Kan hämta från SR:s förstasida eller ett specifikt program.',
+    schema: GetTopStoriesSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -195,6 +197,7 @@ export const miscTools = [
   {
     name: 'list_extra_broadcasts',
     description: 'Lista extrasändningar (sport, special events) från Sveriges Radio.',
+    schema: ListExtraBroadcastsSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -220,6 +223,7 @@ export const miscTools = [
   {
     name: 'get_episode_group',
     description: 'Hämta en grupp/samling av avsnitt (t.ex. "Kända kriminalfall", "Sommarens bästa dokumentärer").',
+    schema: GetEpisodeGroupSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -241,6 +245,7 @@ export const miscTools = [
   {
     name: 'search_all',
     description: 'Global sökning över program, avsnitt och kanaler samtidigt. Perfekt för att hitta innehåll när du inte vet exakt var det finns!',
+    schema: SearchAllSchema,
     inputSchema: {
       type: 'object',
       properties: {

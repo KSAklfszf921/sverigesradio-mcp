@@ -20,6 +20,7 @@ import http from 'http';
 import { allTools } from './tools/index.js';
 import { allResources, resourceContents } from './resources/index.js';
 import { allPrompts, promptMessages } from './prompts/index.js';
+import { asJsonContent, formatErrorPayload, parseArgs } from './lib/tool-utils.js';
 
 const PORT = process.env.PORT || 3000;
 const AUTH_TOKEN = process.env.MCP_AUTH_TOKEN; // Optional token authentication
@@ -59,31 +60,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 
   try {
-    const result = await tool.handler(args as any);
+    const parsedArgs = parseArgs((tool as any).schema, args);
+    const result = await tool.handler(parsedArgs as any);
     return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify(result, null, 2),
-        },
-      ],
+      content: asJsonContent(result),
     };
   } catch (error: any) {
     return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify(
-            {
-              error: error.message || 'Unknown error',
-              code: error.code || 'UNKNOWN',
-              details: error.details,
-            },
-            null,
-            2
-          ),
-        },
-      ],
+      content: asJsonContent(formatErrorPayload(error)),
       isError: true,
     };
   }

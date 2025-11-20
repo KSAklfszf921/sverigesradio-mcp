@@ -92,6 +92,7 @@ export const scheduleTools = [
   {
     name: 'get_channel_schedule',
     description: 'Hämta tablå (TV guide-style) för en radiokanal på ett specifikt datum. Visar kronologiskt vad som sänds hela dagen.',
+    schema: GetChannelScheduleSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -117,6 +118,7 @@ export const scheduleTools = [
   {
     name: 'get_program_broadcasts',
     description: 'Hämta kommande sändningar för ett specifikt program. Se när programmet sänds framöver.',
+    schema: GetProgramBroadcastsSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -146,6 +148,7 @@ export const scheduleTools = [
   {
     name: 'get_all_rightnow',
     description: 'Översikt av vad som sänds JUST NU på ALLA Sveriges Radio-kanaler samtidigt. Perfekt för att se vad som finns att lyssna på.',
+    schema: GetAllRightNowSchema,
     inputSchema: {
       type: 'object',
       properties: {

@@ -126,6 +126,7 @@ export const episodeTools = [
   {
     name: 'list_episodes',
     description: 'Lista alla avsnitt för ett radioprogram. Kan filtrera på datumintervall och välja ljudkvalitet.',
+    schema: ListEpisodesSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -160,6 +161,7 @@ export const episodeTools = [
   {
     name: 'search_episodes',
     description: 'Fulltextsök i avsnitt från Sveriges Radio. Sök i titlar, beskrivningar och innehåll.',
+    schema: SearchEpisodesSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -189,6 +191,7 @@ export const episodeTools = [
   {
     name: 'get_episode',
     description: 'Hämta ett specifikt avsnitt med fullständig information inklusive ljudfiler för streaming och nedladdning.',
+    schema: GetEpisodeSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -209,6 +212,7 @@ export const episodeTools = [
   {
     name: 'get_episodes_batch',
     description: 'Hämta flera avsnitt samtidigt i ett anrop (effektivt för att hämta flera episoder).',
+    schema: GetEpisodesBatchSchema,
     inputSchema: {
       type: 'object',
       properties: {
@@ -228,6 +232,7 @@ export const episodeTools = [
   {
     name: 'get_latest_episode',
     description: 'Hämta det senaste avsnittet för ett program (användbart för att alltid få det nyaste).',
+    schema: GetLatestEpisodeSchema,
     inputSchema: {
       type: 'object',
       properties: {
