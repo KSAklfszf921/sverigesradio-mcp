@@ -34,45 +34,49 @@ npm run build
 npm start
 ```
 
-## 📡 Available Tools (26 total)
+## 📡 Available Tools (26 total) ✅
 
-### Channels (2)
-- `list_channels` - List all radio channels (P1, P2, P3, P4, local)
-- `get_channel_rightnow` - What's on NOW across channels
+### Channels (2 tools)
+- ✅ `list_channels` - List all radio channels (P1, P2, P3, P4, local stations)
+- ✅ `get_channel_rightnow` - What's broadcasting NOW on channel(s)
 
-### Programs (4)
-- `search_programs` - Search for radio programs
-- `get_program` - Get program details
-- `list_program_categories` - Program categories
-- `get_program_schedule` - Upcoming broadcasts
+### Programs (4 tools)
+- ✅ `search_programs` - Search for radio programs by name/category/channel
+- ✅ `get_program` - Get detailed program information
+- ✅ `list_program_categories` - All program categories (News, Music, Sport, etc.)
+- ✅ `get_program_schedule` - When a program is broadcast
 
-### Episodes (5)
-- `list_episodes` - List episodes for a program
-- `search_episodes` - Full-text search
-- `get_episode` - Get episode with audio files
-- `get_episodes_batch` - Multiple episodes at once
-- `get_latest_episode` - Latest episode
+### Episodes (5 tools)
+- ✅ `list_episodes` - List all episodes for a program
+- ✅ `search_episodes` - Full-text search in episodes
+- ✅ `get_episode` - Get episode with streaming/download audio files
+- ✅ `get_episodes_batch` - Get multiple episodes at once (efficient!)
+- ✅ `get_latest_episode` - Get the newest episode for a program
 
-### Schedule (3)
-- `get_channel_schedule` - TV guide-style schedule
-- `get_program_broadcasts` - Upcoming program broadcasts
-- `get_all_rightnow` - All channels NOW overview
+### Schedule (3 tools)
+- ✅ `get_channel_schedule` - TV guide-style schedule for a channel
+- ✅ `get_program_broadcasts` - Upcoming broadcasts for a program
+- ✅ `get_all_rightnow` - Complete overview of all channels NOW
 
-### Playlists ⭐ NEW (3)
-- `get_playlist_rightnow` - Current song playing
-- `get_episode_playlist` - Full episode playlist
-- `search_playlists` - Search in playlists
+### Playlists ⭐ NEW (3 tools)
+- ✅ `get_playlist_rightnow` - Current song playing on a channel
+- ✅ `get_episode_playlist` - Complete playlist for an episode
+- ✅ `search_playlists` - Search for songs, artists, albums
 
-### News (2)
-- `list_news_programs` - All news programs
-- `get_latest_news_episodes` - Latest news (max 1 day old)
+### News (2 tools)
+- ✅ `list_news_programs` - All news programs (Ekot, Ekonomiekot, etc.)
+- ✅ `get_latest_news_episodes` - Latest news episodes (max 1 day old)
 
-### Traffic (2)
-- `get_traffic_messages` - Traffic incidents/messages
-- `get_traffic_areas` - Traffic areas (with GPS lookup)
+### Traffic (2 tools)
+- ✅ `get_traffic_messages` - Traffic incidents, accidents, roadworks
+- ✅ `get_traffic_areas` - Traffic areas (with optional GPS lookup)
 
-### More (9)
-- Toplists, Extra broadcasts, Groups, Search
+### Toplists & More (5 tools)
+- ✅ `get_recently_published` - Recently published shows/podcasts
+- ✅ `get_top_stories` - Featured content from SR
+- ✅ `list_extra_broadcasts` - Special broadcasts (sports, events)
+- ✅ `get_episode_group` - Episode collections (e.g., "Famous Crimes")
+- ✅ `search_all` - Global search across programs, episodes & channels
 
 ## 🎯 Example Prompts
 
@@ -137,6 +141,12 @@ MIT © Isak Skogstad
 ## ⚠️ Status
 
 **Version:** 1.0.0 (Beta)
-**Status:** Core infrastructure complete, tools in active development
+**Status:** ✅ All 26 tools implemented and working!
+
+- ✅ Complete SR API coverage
+- ✅ ETag-based caching for optimal performance
+- ✅ TypeScript with full type safety
+- ⏳ Resources & Prompts (coming soon)
+- ⏳ Render deployment (coming soon)
 
 Sveriges Radio's API is maintained but not actively developed. This MCP server provides stable access to all available endpoints.

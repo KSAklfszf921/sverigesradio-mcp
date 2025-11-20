@@ -11,6 +11,7 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
+import { allTools } from './tools/index.js';
 
 const server = new Server(
   {
@@ -27,21 +28,11 @@ const server = new Server(
 // List tools handler
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
-    tools: [
-      {
-        name: 'list_channels',
-        description: 'Lista alla radiokanaler från Sveriges Radio (P1, P2, P3, P4, etc.)',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            channelId: {
-              type: 'number',
-              description: 'Specifikt kanal-ID (valfritt)',
-            },
-          },
-        },
-      },
-    ],
+    tools: allTools.map((tool) => ({
+      name: tool.name,
+      description: tool.description,
+      inputSchema: tool.inputSchema,
+    })),
   };
 });
 
@@ -49,22 +40,40 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
-  if (name === 'list_channels') {
+  const tool = allTools.find((t) => t.name === name);
+  if (!tool) {
+    throw new Error(`Unknown tool: ${name}`);
+  }
+
+  try {
+    const result = await tool.handler(args as any);
     return {
       content: [
         {
           type: 'text',
-          text: JSON.stringify({
-            message: 'Tool implementation coming soon!',
-            tool: name,
-            args,
-          }, null, 2),
+          text: JSON.stringify(result, null, 2),
         },
       ],
     };
+  } catch (error: any) {
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(
+            {
+              error: error.message || 'Unknown error',
+              code: error.code || 'UNKNOWN',
+              details: error.details,
+            },
+            null,
+            2
+          ),
+        },
+      ],
+      isError: true,
+    };
   }
-
-  throw new Error(`Unknown tool: ${name}`);
 });
 
 async function main() {
