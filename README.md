@@ -1,4 +1,4 @@
-# Sveriges Radio MCP Server 🎙️
+# Sveriges Radio MCP Server
 
 > Modern MCP server för Sveriges Radios öppna API - tillgång till svenska radioprogram, podcasts, livestreams och nyheter.
 
@@ -7,17 +7,17 @@
 
 ---
 
-## ✨ Funktioner
+## Funktioner
 
-🎵 **Ljudinnehåll** - Direktåtkomst till MP3-filer för streaming och nedladdning
-📊 **Metadata** - Detaljerad information om program, kanaler och avsnitt
-📡 **Live-data** - Realtidsinformation om vad som sänds just nu
-🚗 **Trafikinfo** - Aktuella trafikmeddelanden med geografiska koordinater
-🔍 **Sök** - Fulltextsök i program, avsnitt och innehåll
+**Ljudinnehåll** - Direktåtkomst till MP3-filer för streaming och nedladdning
+**Metadata** - Detaljerad information om program, kanaler och avsnitt
+**Live-data** - Realtidsinformation om vad som sänds just nu
+**Trafikinfo** - Aktuella trafikmeddelanden med geografiska koordinater
+**Sök** - Fulltextsök i program, avsnitt och innehåll
 
 ---
 
-## 🚀 Snabbstart
+## Snabbstart
 
 ### Lokal Installation
 ```bash
@@ -46,53 +46,53 @@ curl -H "Authorization: Bearer your-token" \
 
 ---
 
-## 🛠️ Verktyg
+## Verktyg
 
-### Real-time & Live
-- `get_all_rightnow` - Vad som sänds på alla kanaler nu
-- `get_channel_rightnow` - Aktuellt program på specifik kanal
-- `get_playlist_rightnow` - Vilken låt som spelas just nu
+**17 verktyg tillgängliga** - Här är ett urval grupperat efter användningsområde:
+
+### Aktuellt
+- Vad som sänds på alla kanaler just nu
+- Aktuellt program på specifik kanal
+- Vilken låt som spelas just nu
+- Tablå för vald kanal
+
+### Nyheter
+- Senaste nyhetsutsändningar
+- Översikt av alla nyhetsprogram
 
 ### Program & Avsnitt
-- `search_programs` - Sök efter program
-- `get_program` - Hämta programdetaljer
-- `list_episodes` - Lista avsnitt från program
-- `get_episode` - Hämta specifikt avsnitt med ljudfiler
+- Sök efter program
+- Hämta programinformation med ljudfiler
+- Lista avsnitt från program
 
-### Nyheter & Trafik
-- `get_latest_news_episodes` - Senaste nyhetsutsändningar
-- `get_traffic_messages` - Trafikmeddelanden per område
-- `list_news_programs` - Översikt av nyhetsprogram
-
-### Översikt & Sökning
-- `list_channels` - Alla kanaler (P1-P4, lokala stationer)
-- `get_channel_schedule` - Tablå för vald kanal
-- `search_all` - Global sökning
-- `list_program_categories` - Programkategorier
+### Övrigt
+- Hämta trafikrapporter för specifikt område
+- Bläddra bland alla radiokanaler
+- Sök bland allt innehåll
 
 ---
 
-## 💡 Användningsexempel
+## Användningsexempel
 
 **1. Live Radio Dashboard**
-Kombinera `get_all_rightnow`, `get_latest_news_episodes` och `get_traffic_messages` för en komplett översikt av vad som händer just nu.
+Kombinera flera verktyg för att få en komplett översikt av vad som händer just nu på Sveriges Radio.
 
 **2. Smart Podcast-sökning**
-Använd `search_programs` med kategorifilter och analysera metadata för att hitta relevanta podcasts baserat på intressen.
+Sök efter program och analysera metadata för att hitta relevanta podcasts baserat på intressen.
 
 **3. Trafikanalys**
-Hämta `get_traffic_messages` för specifika geografiska områden och skapa realtidsvarningar för pendlingsstråk.
+Hämta trafikrapporter för specifika geografiska områden och skapa realtidsvarningar för pendlingsstråk.
 
 ---
 
-## 📚 Resources (4 st)
+## Resources (4 st)
 
 - `sr://api/info` - API-capabilities, versioner, rate limits
 - `sr://channels/all` - Komplett kanallista med ID:n
 - `sr://audio/quality-guide` - Ljudkvalitet och format
 - `sr://categories/programs` - Alla 15 programkategorier
 
-## 🎯 Prompts (6 st)
+## Prompts (6 st)
 
 - `find-podcast` - Hitta podcasts efter ämne
 - `whats-on-now` - Vad som sänds just nu
@@ -103,7 +103,7 @@ Hämta `get_traffic_messages` för specifika geografiska områden och skapa real
 
 ---
 
-## 🔧 Development
+## Development
 
 ```bash
 npm run dev          # Development mode
@@ -114,7 +114,7 @@ npm test             # Run tests
 
 ---
 
-## 📖 API Information
+## API Information
 
 **Sveriges Radio Open API v2**
 - Bas-URL: `https://api.sr.se/api/v2/`
@@ -124,10 +124,10 @@ npm test             # Run tests
 
 ---
 
-## 📝 License
+## License
 
 MIT © Isak Skogstad
 
-## 🔗 Länkar
+## Länkar
 
 [SR API Documentation](https://api.sr.se/api/documentation/v2/) • [MCP Protocol](https://modelcontextprotocol.io) • [GitHub](https://github.com/KSAklfszf921/sverigesradio-mcp)
