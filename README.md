@@ -53,6 +53,14 @@ curl -H "Authorization: Bearer your-token" \
 - `get_channel_rightnow` - Aktuellt program på specifik kanal
 - `get_playlist_rightnow` - Vilken låt som spelas just nu
 
+### Musik & Spellistor 🎵
+- `get_playlist_rightnow` - Låt som spelas just nu (föregående, nuvarande, nästa)
+- `get_channel_playlist` - Låthistorik för kanal i tidsintervall
+- `get_program_playlist` - Låthistorik för program i tidsintervall
+- `get_episode_playlist` - Komplett spellista för programavsnitt
+
+*Alla låtar inkluderar: titel, artist, kompositör, album, skivbolag, producent, textförfattare, dirigent och tidsstämplar*
+
 ### Program & Avsnitt
 - `search_programs` - Sök efter program
 - `get_program` - Hämta programdetaljer
@@ -77,10 +85,13 @@ curl -H "Authorization: Bearer your-token" \
 **1. Live Radio Dashboard**
 Kombinera `get_all_rightnow`, `get_latest_news_episodes` och `get_traffic_messages` för en komplett översikt av vad som händer just nu.
 
-**2. Smart Podcast-sökning**
+**2. Musikdatabas & Spellistehistorik**
+Använd `get_channel_playlist` för att analysera musikhistorik på P2 musik under en vecka, eller `get_program_playlist` för att se alla låtar som spelats i ett musikprogram. Perfekt för att upptäcka ny musik eller skapa statistik över mest spelade artister.
+
+**3. Smart Podcast-sökning**
 Använd `search_programs` med kategorifilter och analysera metadata för att hitta relevanta podcasts baserat på intressen.
 
-**3. Trafikanalys**
+**4. Trafikanalys**
 Hämta `get_traffic_messages` för specifika geografiska områden och skapa realtidsvarningar för pendlingsstråk.
 
 ---

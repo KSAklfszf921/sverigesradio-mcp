@@ -170,15 +170,28 @@ export interface SRTrafficArea {
 
 export interface SRPlaylistSong {
   title: string;
+  description?: string; // Sammansättning av artist/tonsättare och låtens titel
   artist?: string;
   composer?: string;
   conductor?: string;
   albumname?: string;
   recordlabel?: string;
+  lyricist?: string;
+  producer?: string;
+  starttimeutc?: string;
+  stoptimeutc?: string;
 }
 
 export interface SRPlaylistEntry {
-  song: SRPlaylistSong;
+  title: string;
+  description?: string;
+  artist?: string;
+  composer?: string;
+  conductor?: string;
+  albumname?: string;
+  recordlabel?: string;
+  lyricist?: string;
+  producer?: string;
   starttimeutc: string;
   stoptimeutc: string;
 }
@@ -193,6 +206,11 @@ export interface SRPlaylist {
     name: string;
   };
   playlist?: SRPlaylistEntry[];
+}
+
+export interface SRSongList {
+  copyright: string;
+  song?: SRPlaylistEntry[];
 }
 
 export interface SRTopStory {
