@@ -23,6 +23,7 @@ const ListExtraBroadcastsSchema = z.object({
   sort: z.enum(['localstarttime', 'channel']).optional(),
   page: z.number().min(1).optional(),
   size: z.number().min(1).max(100).optional(),
+  format: z.enum(['xml', 'json']).optional().describe('Svarsformat (default: json)'),
 });
 
 const GetEpisodeGroupSchema = z.object({
@@ -71,11 +72,12 @@ export async function getTopStories(params: z.infer<typeof GetTopStoriesSchema>)
 }
 
 export async function listExtraBroadcasts(params: z.infer<typeof ListExtraBroadcastsSchema>) {
-  const { date, sort, page, size } = params;
+  const { date, sort, page, size, format } = params;
 
   const queryParams: any = { page, size };
   if (date) queryParams.date = date;
   if (sort) queryParams.sort = sort;
+  if (format) queryParams.format = format;
 
   const response = await srClient.fetch<PaginatedResponse<SRExtraBroadcast>>('extra/broadcasts', queryParams);
 
@@ -237,6 +239,11 @@ export const miscTools = [
         },
         size: {
           type: 'number',
+        },
+        format: {
+          type: 'string',
+          enum: ['xml', 'json'],
+          description: 'Svarsformat (default: json)',
         },
       },
     },
